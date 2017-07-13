@@ -1,3 +1,48 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+    <div class="card">
+        <ngb-accordion #acc="ngbAccordion">
+            <ngb-panel>
+                <ng-template ngbPanelTitle>
+                    <button class="btn btn-outline-primary"><i class="fa fa-plus"></i><span> Add New Supplier</span></button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <form class="form" [formGroup]="addSupplierForm" (ngSubmit)="submitInfo()" style="text-align:center">
+                        <div class="form-group row ml-1">
+                            <label for="name" class="col-form-label col-xs-4 col-md-2 form-label">Name</label>
+                            <div class="col-5">
+                                <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row ml-1">
+                            <label for="address" class="col-form-label col-xs-4 col-md-2 form-label">Location</label>
+                            <div class="col-10">
+                                <input class="form-control" type="text" name="address" formControlName="address" placeholder="Location" required>
+                            </div>
+                        </div>
+                        <div class="form-group row ml-1">
+                            <label for="email" class="col-form-label col-xs-4 col-md-2 form-label">Email</label>
+                            <div class="col-10">
+                                <input class="form-control" type="email" name="email" formControlName="email" placeholder="Email"
+                                    required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                <div [hidden]="email.valid || email.untouched">
+                                    <div *ngIf="email.errors && email.errors.pattern" class="text-danger float-left mt-2">
+                                        Email is invalid
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row ml-1">
+                            <label for="phone" class="col-form-label col-xs-4 col-md-2 form-label">Phone</label>
+                            <div class="col-10">
+                                <input class="form-control" type="text" name="phone" formControlName="phone" placeholder="Phone"
+                                    required>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary mt-4" type="submit" [disabled]="!addSupplierForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+                    </form>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </div>
+</div>
