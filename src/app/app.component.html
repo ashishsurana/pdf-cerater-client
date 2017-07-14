@@ -43,9 +43,10 @@
         </ngb-accordion>
     </div>
     <div class="row" *ngIf="filePath" style="text-align:center;">
-        <a class="mx-auto mt-4" [href]="filePath" download="Output.pdf"> <i class="fa fa-download fa-2x"></i> Download Pdf </a>
+        <a class="mx-auto mt-4" [href]="filePath" [download]="fileName"> <i class="fa fa-download fa-2x"></i> Download Pdf </a>
         <div class="col-12 mt-4">
             <embed [src]="filePath" width="90%" height="750px">
         </div>
     </div>
+    <app-toast [message]="toast.message"></app-toast>
 </div>

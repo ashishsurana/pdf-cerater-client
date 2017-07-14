@@ -4,6 +4,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { AppService } from './service/app.service';
 
+import { ToastComponent } from './toast/toast.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +14,7 @@ import { AppService } from './service/app.service';
 export class AppComponent implements OnInit {
 
   filePath;
+  fileName;
 
   addSupplierForm: FormGroup;
   name = new FormControl('', Validators.required);
@@ -21,7 +24,8 @@ export class AppComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private _appService: AppService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public toast: ToastComponent
   ) { }
 
   ngOnInit() {
@@ -37,7 +41,11 @@ export class AppComponent implements OnInit {
     this._appService.generatePdf(this.addSupplierForm.value).subscribe((res) => {
       if (res) {
         this.filePath = this.sanitizer.bypassSecurityTrustResourceUrl(JSON.parse(res._body).path);
+        this.fileName = JSON.parse(res._body).filePath;
       }
-    });
+    },
+      (error) => {
+        this.toast.setMessage(error._body, 'danger');
+      });
   }
 }

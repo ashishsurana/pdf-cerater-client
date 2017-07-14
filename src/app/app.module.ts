@@ -7,10 +7,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from './service/app.service';
 
 import { AppComponent } from './app.component';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +21,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     NgbModule.forRoot()
   ],
-  providers: [AppService],
+  providers: [AppService, ToastComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
