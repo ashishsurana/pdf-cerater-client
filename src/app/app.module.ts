@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { AppService } from './service/app.service';
 
 import { AppComponent } from './app.component';
 
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
